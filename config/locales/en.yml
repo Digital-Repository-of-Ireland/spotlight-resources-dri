@@ -1,0 +1,20 @@
+en:
+  spotlight:
+    resources:
+        dri_harvester:
+            form:
+              title: 'DRI URL'
+              url: "Base URL"
+              add_item: "Add items"
+              url-field:
+                help: "Add the base URL of the DRI Repository."
+              user: "User"
+              user-field:
+                help: "User email."
+              token-field:
+                help: "User token."
+              ids-field:
+                help: "List of DRI object IDS."
+            performharvest:
+              success: "Successfully retrieved DRI objects."
+              failed: "Unable to retrieve DRI objects."

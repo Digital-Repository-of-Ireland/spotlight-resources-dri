@@ -1,0 +1,4 @@
+RELEASE NOTES
+
+0.1.0 (19/07/2018) SK
+-- Initial release
