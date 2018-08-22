@@ -1,4 +1,4 @@
-<%= bootstrap_form_for([current_exhibit, @resource.becomes(Spotlight::Resources::DriHarvester)], url: spotlight_dri_resources_engine.exhibit_dri_harvester_path(exhibit_id: current_exhibit), layout: :horizontal, label_col: 'col-md-2', control_col: 'col-sm-6 col-md-6' ) do |f| %>
+<%= bootstrap_form_for([current_exhibit, @resource.becomes(Spotlight::Resources::DriHarvester)], url: spotlight_resources_dri_engine.exhibit_dri_harvester_path(exhibit_id: current_exhibit), layout: :horizontal, label_col: 'col-md-2', control_col: 'col-sm-6 col-md-6' ) do |f| %>
   <%= f.text_field :url, help: t('.url-field.help'), label: t('.url') %>
   <%= f.text_field :user, help: t('.user-field.help'), label: t('.user') %>
   <%= f.text_field :token, help: t('.token-field.help'), label: t('.token') %>

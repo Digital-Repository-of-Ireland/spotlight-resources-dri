@@ -95,11 +95,12 @@ module Spotlight
       def image_urls
         @image_urls ||= files.map do |file|
           # skip unless it is an image
-          next unless file && file.key?('full_size_web_format')
+          key = 'full_size_web_format'
+          next unless file && file.key?(key)
 
-          file_id = File.basename(URI.parse(file['full_size_web_format']).path)
-          image_url = "https://repository.dri.ie/loris/#{id}:#{file_id}/info.json"
-          image_url
+          file_id = File.basename(URI.parse(file[key]).path).split("_#{key}")[0]
+
+          "https://repository.dri.ie/loris/#{id}:#{file_id}/info.json"
         end.compact
       end
 

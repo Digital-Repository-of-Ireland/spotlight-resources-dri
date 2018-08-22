@@ -40,7 +40,7 @@ RSpec.describe Spotlight::Resources::DriObject, type: :model do
 
     describe 'image urls' do
       it 'is included in the solr document when present' do
-        expect(subject.to_solr[:content_metadata_image_iiif_info_ssm]).to eq ['https://repository.dri.ie/loris/n871c555k:tm7118916_full_size_web_format.jpeg/info.json']
+        expect(subject.to_solr[:content_metadata_image_iiif_info_ssm]).to eq ['https://repository.dri.ie/loris/n871c555k:tm7118916/info.json']
       end
     end
 
