@@ -92,15 +92,20 @@ module Spotlight
         end
       end
 
+      def iiif_manifest_base
+        Spotlight::Resources::Dri::Engine.config.iiif_manifest_base
+      end
+
       def image_urls
         @image_urls ||= files.map do |file|
           # skip unless it is an image
-          key = 'full_size_web_format'
-          next unless file && file.key?(key)
+          next unless file && file.key?(surrogate_postfix)
 
-          file_id = File.basename(URI.parse(file[key]).path).split("_#{key}")[0]
+          file_id = File.basename(
+                      URI.parse(file[surrogate_postfix]).path
+                    ).split("_#{surrogate_postfix}")[0]
 
-          "https://repository.dri.ie/loris/#{id}:#{file_id}/info.json"
+          "#{iiif_manifest_base}/#{id}:#{file_id}/info.json"
         end.compact
       end
 
@@ -118,6 +123,10 @@ module Spotlight
 
       def sidecar
         @sidecar ||= document_model.new(id: compound_id(id)).sidecar(exhibit)
+      end
+
+      def surrogate_postfix
+        Spotlight::Resources::Dri::Engine.config.surrogate_postfix
       end
 
       def document_model

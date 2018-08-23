@@ -26,7 +26,7 @@ RSpec.describe Spotlight::Resources::DriObject, type: :model do
     end
 
     describe 'label' do
-      it 'is inlcuded in the solr document when present' do
+      it 'is included in the solr document when present' do
         expect(subject.to_solr['full_title_tesim']).to eq ["They Remember 1916: Joseph O'Connor"]
       end
     end
