@@ -14,6 +14,8 @@ module Spotlight
       def to_solr
         add_document_id
         add_label
+        add_creator
+        add_subject
         add_metadata
         add_collection_id
         add_image_urls
@@ -32,6 +34,14 @@ module Spotlight
 
       attr_reader :id, :exhibit, :metadata, :files, :solr_hash
       delegate :blacklight_config, to: :exhibit
+
+      def add_creator
+        solr_hash['readonly_creator_ssim'] = metadata['creator']
+      end
+
+      def add_subject
+        solr_hash['readonly_subject_ssim'] = metadata['subject']
+      end
 
       def add_document_id
         solr_hash[blacklight_config.document_model.unique_key.to_sym] = compound_id(id)
