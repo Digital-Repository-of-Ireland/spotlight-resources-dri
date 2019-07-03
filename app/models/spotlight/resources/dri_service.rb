@@ -8,7 +8,6 @@ module Spotlight::Resources
     def self.parse(url, object_ids)
       response = dri_response(url, object_ids)
       json = JSON.parse(response)
-      return [] if json.key?('errors')
 
       create_dri_objects(json)
     end
@@ -39,9 +38,7 @@ module Spotlight::Resources
         private
 
         def create_dri_objects(objects_json)
-          objects_json.map do |object_json|
-            next unless object_json.key?['pid']
-
+          objects_json.select{ |o| o.is_a?(Hash) && o.key?('pid') }.map do |object_json|
             object = Spotlight::Resources::DriObject.new(
               id: object_json['pid'],
               metadata: object_json['metadata'],
