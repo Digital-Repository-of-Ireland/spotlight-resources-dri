@@ -7,8 +7,10 @@ module Spotlight::Resources
 
     def self.parse(url, object_ids)
       response = dri_response(url, object_ids)
+      json = JSON.parse(response)
+      return [] if json.key?('errors')
 
-      create_dri_objects(JSON.parse(response))
+      create_dri_objects(json)
     end
 
 
@@ -28,7 +30,7 @@ module Spotlight::Resources
 
           request = Net::HTTP::Post.new(
             uri.request_uri,
-            initheader = {'Content-Type' => 'application/json'}
+            {'Content-Type': 'application/json'}
           )
           request.body = request_params.to_json
           http.request(request).body
@@ -38,6 +40,8 @@ module Spotlight::Resources
 
         def create_dri_objects(objects_json)
           objects_json.map do |object_json|
+            next unless object_json.key?['pid']
+
             object = Spotlight::Resources::DriObject.new(
               id: object_json['pid'],
               metadata: object_json['metadata'],

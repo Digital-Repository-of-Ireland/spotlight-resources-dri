@@ -13,7 +13,7 @@ module Spotlight
       end
 
       def retrieve_objects
-        url = self.data[:base_url] + "/get_objects?user_email=" + self.data[:user] + "&user_token=" + self.data[:token]
+        url = self.data[:base_url] + "/get_objects.json?user_email=" + self.data[:user] + "&user_token=" + self.data[:token]
 
         DriService.parse(url, object_ids)
       end
