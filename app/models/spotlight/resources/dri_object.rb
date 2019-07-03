@@ -16,6 +16,7 @@ module Spotlight
         add_label
         add_creator
         add_subject
+        add_type
         add_metadata
         add_collection_id
         add_image_urls
@@ -41,6 +42,10 @@ module Spotlight
 
       def add_subject
         solr_hash['readonly_subject_ssim'] = metadata['subject']
+      end
+
+      def add_type
+        solr_hash['readonly_type_ssim'] = metadata['type']
       end
 
       def add_document_id
@@ -191,7 +196,7 @@ module Spotlight
         end
 
         def desc_metadata_fields
-          %w(description creator subject attribution rights license)
+          %w(description creator subject type attribution rights license)
         end
 
         def add_attribution(field, hash)
