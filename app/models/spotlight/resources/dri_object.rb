@@ -15,9 +15,6 @@ module Spotlight
         add_document_id
         add_label
         add_creator
-        add_subject
-        add_temporal_coverage
-        add_geographical_coverage
         add_type
         add_metadata
         add_collection_id
@@ -40,18 +37,6 @@ module Spotlight
 
       def add_creator
         solr_hash['readonly_creator_ssim'] = metadata['creator']
-      end
-
-      def add_subject
-        solr_hash['readonly_subject_ssim'] = metadata['subject']
-      end
-
-      def add_temporal_coverage
-        solr_hash['readonly_temporal_coverage_ssim'] = metadata['temporal_coverage']
-      end
-
-      def add_geographical_coverage
-        solr_hash['readonly_geographical_coverage_ssim'] = metadata['geographical_coverage']
       end
 
       def add_type
@@ -206,7 +191,7 @@ module Spotlight
         end
 
         def desc_metadata_fields
-          %w(description creator subject temporal_coverage geographical_coverage type attribution rights license)
+          %w(description creator attribution rights license)
         end
 
         def add_attribution(field, hash)
