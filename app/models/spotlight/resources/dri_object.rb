@@ -191,7 +191,7 @@ module Spotlight
         end
 
         def desc_metadata_fields
-          %w(description creator attribution rights license)
+          %w(description creator type attribution rights license)
         end
 
         def add_attribution(field, hash)
