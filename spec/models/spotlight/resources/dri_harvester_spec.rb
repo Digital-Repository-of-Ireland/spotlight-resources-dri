@@ -17,22 +17,17 @@ RSpec.describe Spotlight::Resources::DriHarvester, type: :model do
     end
   end
 
-  describe '#documents_to_index' do
+  describe '#reindex' do
     let(:url) { 'https://repository.dri.ie/get_objects?user_email=manager@dri.ie&user_token=token' }
-    before { stub_default_collection }
-    subject { harvester.document_builder }
 
-    it 'returns an Enumerator of all the solr documents' do
-      expect(subject.documents_to_index).to be_a(Enumerator)
-      expect(subject.documents_to_index.count).to eq 1
+    before do
+      stub_default_collection
+      allow(Spotlight::Engine.config).to receive(:writable_index).and_return(false)
     end
 
-    it 'all solr documents include exhibit context' do
-      subject.documents_to_index.each do |doc|
-        expect(doc).to have_key("spotlight_exhibit_slug_#{exhibit.slug}_bsi")
-      end
+    it 'indexes all the solr documents' do
+      expect(subject.reindex).to eq 1
     end
   end
-
 end
 

@@ -14,20 +14,19 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,lib}/**/*", "LICENSE.md", "Rakefile", "README.md"]
 
-  s.add_dependency "blacklight-spotlight"
+  s.add_dependency "blacklight-spotlight", '~> 3'
 
   s.add_development_dependency "bundler"
-  s.add_development_dependency "rails"
+  s.add_development_dependency "rails", '~> 6.1'
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency 'capybara'
-  s.add_development_dependency 'database_cleaner', '~> 1.3'
+  s.add_development_dependency 'database_cleaner'
   s.add_development_dependency "coveralls"
   s.add_development_dependency 'rubocop'
   s.add_development_dependency "rubocop-rspec"
   s.add_development_dependency "yard"
-  s.add_development_dependency "engine_cart"
   s.add_development_dependency "solr_wrapper"
-  s.add_development_dependency "riiif", '~> 1.0'
-  s.add_development_dependency "i18n", "< 1.1.0"
+  s.add_development_dependency "riiif"
+  s.add_development_dependency "i18n"
 end

@@ -2,7 +2,6 @@ module Spotlight
   module Resources
     class DriHarvester < Spotlight::Resource
       attr_accessor :ids, :base_url, :user, :token
-      self.document_builder_class = Spotlight::Resources::DriBuilder
 
       def dri_objects
         @dri_objects ||= retrieve_objects
@@ -17,7 +16,16 @@ module Spotlight
 
         DriService.parse(url, object_ids)
       end
+      
+      def self.indexing_pipeline
+        @indexing_pipeline ||= super.dup.tap do |pipeline|
+          pipeline.sources = [Spotlight::Etl::Sources::SourceMethodSource(:dri_objects)]
 
+          pipeline.transforms = [
+            ->(data, p) { data.merge(p.source.to_solr(exhibit: p.context.resource.exhibit)) }
+          ] + pipeline.transforms
+        end
+      end
     end
   end
 end

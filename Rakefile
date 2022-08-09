@@ -17,36 +17,6 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.options = ['-l'] # run lint cops only
 end
 
-require 'engine_cart/rake_task'
-
-task ci: ['engine_cart:generate'] do
-  require 'solr_wrapper'
-  ENV['environment'] = 'test'
-
-  SolrWrapper.wrap(port: '8983') do |solr|
-    solr.with_collection(name: 'blacklight-core', dir: File.join(File.expand_path(File.dirname(__FILE__)), 'solr', 'conf')) do
-      # run the tests
-      Rake::Task['spec'].invoke
-    end
-  end
-end
-
-task default: [:ci, :rubocop]
-
-desc 'Run generated test Rails app with generated Solr instance running'
-task :server do
-  Rake::Task['engine_cart:generate'].invoke
-  require 'solr_wrapper'
-
-  SolrWrapper.wrap do |solr|
-    solr.with_collection(name: 'blacklight-core', dir: File.join(File.expand_path(File.dirname(__FILE__)), 'solr', 'conf')) do
-      within_test_app do
-        system 'bundle exec rails s'
-      end
-    end
-  end
-end
-
 require 'yard'
 require 'yard/rake/yardoc_task'
 begin

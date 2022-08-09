@@ -2,9 +2,6 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'spec_helper'
 
-require 'engine_cart'
-EngineCart.load_application!
-
 require 'factory_bot_rails'
 
 require 'rspec/rails'
