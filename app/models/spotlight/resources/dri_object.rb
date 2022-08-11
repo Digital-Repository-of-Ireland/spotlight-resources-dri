@@ -11,7 +11,9 @@ module Spotlight
         @solr_hash = {}
       end
 
-      def to_solr
+      def to_solr(exhibit:)
+        with_exhibit(exhibit)
+
         add_document_id
         add_label
         add_creator
