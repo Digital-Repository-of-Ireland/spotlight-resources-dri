@@ -1,11 +1,11 @@
-require 'rails_helper'
+require 'spec_helper'
 require 'yaml'
 
 RSpec.describe Spotlight::Resources::DriService, type: :model do
   let(:exhibit) { FactoryBot.create(:exhibit) }
 
   describe '#parse' do
-    let(:url) { 'https://repository.dri.ie/get_objects?user_email=manager@dri.ie&user_token=token' }
+    let(:url) { 'https://repository.dri.ie/get_objects.json?user_email=manager@dri.ie&user_token=token' }
     let(:object_ids) { ['xxxxxx'] }
 
     before { stub_default_collection }

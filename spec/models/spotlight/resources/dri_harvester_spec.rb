@@ -1,15 +1,14 @@
-require 'rails_helper'
+require 'spec_helper'
 require 'yaml'
 
 RSpec.describe Spotlight::Resources::DriHarvester, type: :model do
   let(:exhibit) { FactoryBot.create(:exhibit) }
-  let(:harvester) { described_class.create(exhibit_id: exhibit.id,
+  subject(:harvester) { described_class.create(exhibit_id: exhibit.id,
      data: {base_url: 'https://repository.dri.ie', user: 'manager@dri.ie', token: 'token', ids: "xxxxxx"})}
 
   describe 'Harvesting' do
-    let(:url) { 'https://repository.dri.ie/get_objects?user_email=manager@dri.ie&user_token=token' }
+    let(:url) { 'https://repository.dri.ie/get_objects.json?user_email=manager@dri.ie&user_token=token' }
 
-    subject { harvester }
     before { stub_default_collection }
 
     it 'returns DRIObjects' do
@@ -18,8 +17,7 @@ RSpec.describe Spotlight::Resources::DriHarvester, type: :model do
   end
 
   describe '#reindex' do
-    let(:url) { 'https://repository.dri.ie/get_objects?user_email=manager@dri.ie&user_token=token' }
-
+    let(:url) { 'https://repository.dri.ie/get_objects.json?user_email=manager@dri.ie&user_token=token' }
     before do
       stub_default_collection
       allow(Spotlight::Engine.config).to receive(:writable_index).and_return(false)

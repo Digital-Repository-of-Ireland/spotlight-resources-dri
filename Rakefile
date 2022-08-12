@@ -9,6 +9,9 @@ end
 
 require "bundler/gem_tasks"
 
+APP_RAKEFILE = File.expand_path("spec/test-app/Rakefile", __dir__)
+load "rails/tasks/engine.rake"
+
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 

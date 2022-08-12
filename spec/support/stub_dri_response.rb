@@ -6,7 +6,7 @@ module StubDriResponse
 
   def stub_default_collection
     stub_dri_response_for_url(
-      'https://repository.dri.ie/get_objects?user_email=manager@dri.ie&user_token=token',
+      'https://repository.dri.ie/get_objects.json?user_email=manager@dri.ie&user_token=token',
       ["xxxxxx"],
       object_json
     )

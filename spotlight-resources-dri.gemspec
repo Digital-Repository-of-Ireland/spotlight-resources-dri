@@ -13,11 +13,13 @@ Gem::Specification.new do |s|
   s.license     = "Apache-2.0"
 
   s.files = Dir["{app,config,lib}/**/*", "LICENSE.md", "Rakefile", "README.md"]
-
-  s.add_dependency "blacklight-spotlight", '~> 3'
+  s.test_files = Dir["spec/**/*"]
 
   s.add_development_dependency "bundler"
   s.add_development_dependency "rails", '~> 6.1'
+  s.add_development_dependency "devise"
+  s.add_development_dependency "devise-i18n-views"
+  s.add_development_dependency "devise-guests", "~> 0.3"
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency 'capybara'
@@ -29,4 +31,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "solr_wrapper"
   s.add_development_dependency "riiif"
   s.add_development_dependency "i18n"
+  s.add_development_dependency 'blacklight', ' ~> 7.0'
+  s.add_development_dependency "blacklight-spotlight"
+  s.add_development_dependency "sqlite3"
 end

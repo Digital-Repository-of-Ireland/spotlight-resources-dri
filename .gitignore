@@ -6,3 +6,9 @@ log/*
 .DS_Store
 /log/
 tmp/
+/spec/test-app/log/*.log
+/spec/test-app/db/*.sqlite3
+/spec/test-app/db/migrate
+/spec/test_app/tmp
+/spec/reports
+
