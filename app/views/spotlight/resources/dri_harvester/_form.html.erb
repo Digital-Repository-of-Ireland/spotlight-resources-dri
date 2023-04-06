@@ -3,6 +3,7 @@
   <%= f.text_field :user, help: t('.user-field.help'), label: t('.user') %>
   <%= f.text_field :token, help: t('.token-field.help'), label: t('.token') %>
   <%= f.text_field :ids, help: t('.ids-field.help'), label: t('.ids') %>
+  <%= f.text_area :metadata, help: t('.metadata-field.help'), label: t('.metadata') %>
   <div class="form-actions">
     <div class="primary-actions">
       <%= cancel_link @resource, :back, class: 'btn btn-default' %>

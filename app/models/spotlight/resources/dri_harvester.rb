@@ -1,7 +1,7 @@
 module Spotlight
   module Resources
     class DriHarvester < Spotlight::Resource
-      attr_accessor :ids, :base_url, :user, :token
+      attr_accessor :ids, :metadata, :base_url, :user, :token
 
       def dri_objects
         @dri_objects ||= retrieve_objects
@@ -14,7 +14,7 @@ module Spotlight
       def retrieve_objects
         url = self.data[:base_url] + "/get_objects.json?user_email=" + self.data[:user] + "&user_token=" + self.data[:token]
 
-        DriService.parse(url, object_ids)
+        DriService.parse(url, object_ids, self.data[:metadata])
       end
       
       def self.indexing_pipeline

@@ -15,6 +15,8 @@ en:
                 help: "User token."
               ids-field:
                 help: "List of DRI object IDS."
+              metadata-field:
+                help: "List of metadata fields to retrieve, leave blank for default set."
             performharvest:
               success: "Successfully retrieved DRI objects."
               failed: "Unable to retrieve DRI objects."

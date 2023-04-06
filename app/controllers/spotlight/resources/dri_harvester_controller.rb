@@ -11,7 +11,8 @@ module Spotlight::Resources
         data: {base_url: resource_params[:url],
               user: resource_params[:user],
               token: resource_params[:token],
-              ids: resource_params[:ids]},
+              ids: resource_params[:ids],
+              metadata: resource_params[:metadata]},
         exhibit: current_exhibit)
 
       if harvester.dri_objects.size == 0 || !harvester.save_and_index
@@ -27,7 +28,7 @@ module Spotlight::Resources
   private
 
     def resource_params
-      params.require(:resources_dri_harvester).permit(:url, :user, :token, :ids)
+      params.require(:resources_dri_harvester).permit(:url, :user, :token, :ids, :metadata, :exhibit_id)
     end
   end
 end

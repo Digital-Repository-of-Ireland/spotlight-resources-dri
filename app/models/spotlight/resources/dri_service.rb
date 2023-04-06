@@ -5,8 +5,8 @@ require 'json'
 module Spotlight::Resources
   class DriService
 
-    def self.parse(url, object_ids)
-      response = dri_response(url, object_ids)
+    def self.parse(url, object_ids, metadata = nil)
+      response = dri_response(url, object_ids, metadata)
       json = JSON.parse(response)
 
       create_dri_objects(json)
@@ -15,8 +15,9 @@ module Spotlight::Resources
 
     private
       class << self
-        def dri_response(url, object_ids)
+        def dri_response(url, object_ids, metadata = nil)
           request_params = { objects: object_ids.map { |id| { pid: id } } }
+          request_params[:metadata] = metadata.split(/[,\s]+/) if metadata
 
           uri = URI.parse(url)
           response = Net::HTTP.new(uri.host, uri.port)
