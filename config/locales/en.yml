@@ -3,7 +3,7 @@ en:
     resources:
         dri_harvester:
             form:
-              title: 'DRI URL'
+              title: 'DRI Repository'
               url: "Base URL"
               add_item: "Add items"
               url-field:
